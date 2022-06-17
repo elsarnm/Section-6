@@ -1,0 +1,16 @@
+{
+  "name": "Section-6",
+  "packageManager": "yarn@3.2.1",
+  "main": "index.js",
+  "author": "queenels",
+  "license": "MIT",
+
+  "scripts": {
+    "open": "cypress open"
+  },
+
+  "devDependencies": {
+    "cypress": "^10.1.0",
+    "prettier": "^2.7.1"
+  }
+}
