@@ -1,6 +1,6 @@
 /// <reference types="cypress" />
 
-describe('Tugas Login/ Logout Test', () => {
+describe('Tugas Login and Logout Web ZeroBank', () => {
     before(() => {
         cy.visit('http://zero.webappsecurity.com/index.html')
         cy.url().should('include', 'index.html')
@@ -8,20 +8,18 @@ describe('Tugas Login/ Logout Test', () => {
     });
 
     it('Should try to login with invalid data', () => {
-        cy.get('#login_form').should('be.visible')
-        cy.get('#user_login').type('invalid username')
-        cy.get('#user_password').type('invalid password')
-        cy.contains('Sign in').click()
+        cy.fixture("data").then(data => {
+            const username = data.invaliduser.namaakun
+            const password = data.invaliduser.sandi
+            cy.login(username, password)
+            })
+            cy.get('.alert-error').should('be.visible').and('contain', 'Login and/or password are wrong.')
     });
 
-    it('Should display error message', () => {
-        cy.get('.alert-error').should('be.visible').and('contain', 'Login and/or password are wrong.')
-    });
-
-    it('Should login to application with invalid data', () => {
-        cy.fixture("user").then(user1 => {
-            const username = user1.username
-            const password = user1.password
+    it('Should login to application with valid data', () => {
+        cy.fixture("data").then(data => {
+            const username = data.validuser.namaakun
+            const password = data.validuser.sandi
             cy.login(username, password)
             })
             cy.get('h2').should('contain.text', 'Cash Accounts')

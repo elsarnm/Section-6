@@ -1,0 +1,11 @@
+{
+    "validuser": {
+        "namaakun": "username",
+        "sandi": "password"
+    },
+
+    "invaliduser": {
+        "namaakun": "invalid username",
+        "sandi": "invalid password"
+    }
+}
